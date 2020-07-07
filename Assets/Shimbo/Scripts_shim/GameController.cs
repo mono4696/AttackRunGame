@@ -88,6 +88,11 @@ public class GameController : MonoBehaviour
                     //シーン移動
                     //SceneManager.LoadScene();
                 }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    //title画面へ
+                    //SceneManager.LoadScene(0);
+                }
                 break;
         }
     }
@@ -114,7 +119,7 @@ public class GameController : MonoBehaviour
         state = State.GameOver;
         pc.enabled = false;
         stateLabel.enabled = true;
-        stateLabel.text = "GAME SET！\n\nScore : " + pc.GetAttackCount() + "\n(HighScore : " + PlayerPrefs.GetInt("HighScore") + ")\n\n[A key] 再挑戦  /  ゲーム終了 [D key]";
+        stateLabel.text = "GAME SET！\n\nScore : " + pc.GetAttackCount() + "\n(HighScore : " + PlayerPrefs.GetInt("HighScore") + ")\n\n[A key] 再挑戦\n[S key] タイトル画面へ\n[D key] ゲーム終了";
 
     }
     
