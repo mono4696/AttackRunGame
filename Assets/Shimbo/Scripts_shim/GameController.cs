@@ -48,8 +48,6 @@ public class GameController : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", pc.GetAttackCount());
             PlayerPrefs.Save();
-
-            Debug.Log(PlayerPrefs.GetInt("HighScore"));
         }
 
         if (pc.Hp() <= 0)
@@ -85,7 +83,7 @@ public class GameController : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.D))
                 {
-                    //シーン移動
+                    //終了画面へ
                     //SceneManager.LoadScene();
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
@@ -103,7 +101,7 @@ public class GameController : MonoBehaviour
         pc.enabled = false;
 
         stateLabel.text =
-            "敵を倒して進もう！\n\nジャンプ・・・[Space Key]\nパンチ攻撃・・・[F key]\n\n敵の攻撃に３回当たる\nor\nタイムオーバーでゲーム終了\n\n[Space Key]でスタート";
+            "敵を倒して進もう！\n\nジャンプ...[Space Key]\nパンチ攻撃...[F key]\n\n敵の攻撃に３回当たる\nor\nタイムオーバーでゲーム終了\n\n[Space Key]でスタート";
 
     }
 

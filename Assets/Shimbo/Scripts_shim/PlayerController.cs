@@ -85,11 +85,11 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("enabled=True");
+            //Debug.Log("enabled=True");
             animator.SetBool("action", true);
             handCol.enabled = true;
 
-            Invoke("ColliderReset", 1f);
+            Invoke("ColliderReset", 0.6f);
         }
         else
         {
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     //単純な接触で敵が消えないように
     void ColliderReset()
     {
-        Debug.Log("enabled=false");
+        //Debug.Log("enabled=false");
         handCol.enabled = false;
     }
 
@@ -148,17 +148,18 @@ public class PlayerController : MonoBehaviour
         return this.enemyCount;
     }
 
+    //動いてる時の衝突判定
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (IsStan())
         {
-            Debug.Log("stan");
+            Debug.Log("stan.move");
             animator.SetTrigger("stan");
             return;
         }
         else if(hit.gameObject.tag == "EnemyHand")
         {
-            Debug.Log("damage");
+            Debug.Log("damage.move");
             animator.SetBool("damaged", true);
             this.hp--;
             transform.position = transform.position + -transform.forward * 3f;

@@ -25,13 +25,16 @@ public class EnemyController : MonoBehaviour
 
         if (anim.nameHash == action)//腕を振り回している間はColliderオン
         {
-            //Debug.Log("handUP");
+            //Debug.Log("Enemy.handUP");
             handCol.enabled = true;
+
+            Invoke("ColliderReset", 0.67f);
         }
-        else//他モーションではColliderオフ
-        {
-            //Debug.Log("handDown");
-            handCol.enabled = false;
-        }
+    }
+
+    void ColliderReset()
+    {
+        //Debug.Log("Enemy.handDown");
+        handCol.enabled = false;
     }
 }
