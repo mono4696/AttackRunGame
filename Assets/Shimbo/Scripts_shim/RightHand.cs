@@ -5,7 +5,7 @@ using UnityEngine;
 public class RightHand : MonoBehaviour
 {
 
-    public PlayerController pc;
+    public Shimbo_PlayerController pc;
     int count = 0;
 
     // Start is called before the first frame update

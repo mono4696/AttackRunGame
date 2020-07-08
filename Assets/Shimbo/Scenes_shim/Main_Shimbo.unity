@@ -420,6 +420,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54036c7ab8674b6a8143d2a7e5ac568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &761055592 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 3875020792322838735, guid: 8777a2edcf16d450380c4da5a2f1fdfe,
+    type: 3}
+  m_PrefabInstance: {fileID: 3875020791573322151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &914987239
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 985138910}
   - component: {fileID: 985138911}
+  - component: {fileID: 985138912}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -630,7 +637,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996d7e60e0d9c4e55ab03220fd57d76c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
   pc: {fileID: 1935649579}
+  hand: {fileID: 761055591}
+  timeLabel: {fileID: 1447530420}
+  scoreLabel: {fileID: 1023670721}
+  stateLabel: {fileID: 1474789535}
+  hpPanel: {fileID: 914987243}
+  timeCount: 30
+  runningDistance: 0
+--- !u!114 &985138912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985138909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b488aaade136401d8a22585d9a5ace7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pc: {fileID: 1689608697}
   hand: {fileID: 761055591}
   timeLabel: {fileID: 1447530420}
   scoreLabel: {fileID: 1023670721}
@@ -670,8 +708,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73, y: -38}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchoredPosition: {x: 87.7, y: -38}
+  m_SizeDelta: {x: 130, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023670721
 MonoBehaviour:
@@ -876,7 +914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73, y: -66}
+  m_AnchoredPosition: {x: 73, y: -68.4}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447530420
@@ -1074,6 +1112,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3875020791573322151}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1689608696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3875020793239730271, guid: 8777a2edcf16d450380c4da5a2f1fdfe,
+    type: 3}
+  m_PrefabInstance: {fileID: 3875020791573322151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1689608697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689608696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3807e91ce3011403197180fe2926a932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handCol: {fileID: 761055592}
+  gravity: 20
+  speed: 7
+  rotSpeed: 80
+  jumpPower: 6
+  jump: {fileID: 8300000, guid: eed2451bbd4264da8b6c27c92df62faf, type: 3}
+  punch: {fileID: 8300000, guid: 93544ae23f04c47b682e4c22db4335b8, type: 3}
+  damaged: {fileID: 8300000, guid: c0cc9bb81e32248d7b64b27359c13a43, type: 3}
 --- !u!1 &1694080362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1396,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3875020791573322151}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1689608696}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3d2fa171f96c43139b3a9a4c4556536, type: 3}
@@ -1490,6 +1554,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera_shim
       objectReference: {fileID: 0}
+    - target: {fileID: 3875020792322838720, guid: 8777a2edcf16d450380c4da5a2f1fdfe,
+        type: 3}
+      propertyPath: pc
+      value: 
+      objectReference: {fileID: 1689608697}
     - target: {fileID: 3875020793239430591, guid: 8777a2edcf16d450380c4da5a2f1fdfe,
         type: 3}
       propertyPath: m_LocalPosition.x
