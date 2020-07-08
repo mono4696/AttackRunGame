@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
     public Text stateLabel;
     public HpPanel hpPanel;
     float timeCount = 30f;//時間制限
+    int runningDistance;//走った距離
 
     // Start is called before the first frame update
     void Start()
@@ -37,16 +38,18 @@ public class GameController : MonoBehaviour
             timeLabel.text = "残り" + timeCount.ToString("0") + "秒";
         }
         
-        //スコア更新(倒したEnemy数がスコア)
-        scoreLabel.text = "Score : " + pc.GetAttackCount();
+        //スコア更新
+        scoreLabel.text = "倒した数 : " + pc.GetAttackCount();
+        runningDistance = (int)pc.transform.position.z + 12;//走った距離
+        int score = pc.GetAttackCount() + runningDistance;//総スコア
 
         //HP更新
         hpPanel.UpdateHp(pc.Hp());
 
         //ハイスコア
-        if (PlayerPrefs.GetInt("HighScore") < pc.GetAttackCount())
+        if (PlayerPrefs.GetInt("HighScoreSHIMBO") < score)
         {
-            PlayerPrefs.SetInt("HighScore", pc.GetAttackCount());
+            PlayerPrefs.SetInt("HighScoreSHIMBO", score);
             PlayerPrefs.Save();
         }
 
@@ -84,12 +87,13 @@ public class GameController : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.D))
                 {
                     //終了画面へ
-                    //SceneManager.LoadScene();
+                    //SceneManager.GetSceneByName("");
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
                     //title画面へ
-                    //SceneManager.LoadScene(0);
+                    SceneManager.GetSceneByName("MainTitle");
+                    
                 }
                 break;
         }
@@ -101,7 +105,7 @@ public class GameController : MonoBehaviour
         pc.enabled = false;
 
         stateLabel.text =
-            "敵を倒して進もう！\n\nジャンプ...[Space Key]\nパンチ攻撃...[F key]\n\n敵の攻撃に３回当たる\nor\nタイムオーバーでゲーム終了\n\n[Space Key]でスタート";
+            "敵を倒して進もう！\n倒した数と進んだ距離が得点になるよ。\n\nジャンプ...[Space Key]\nパンチ攻撃...[F key]\n\n敵の攻撃に３回当たる\nor\nタイムオーバーでゲーム終了\n\n[Space Key]でスタート";
 
     }
 
@@ -117,7 +121,8 @@ public class GameController : MonoBehaviour
         state = State.GameOver;
         pc.enabled = false;
         stateLabel.enabled = true;
-        stateLabel.text = "GAME SET！\n\nScore : " + pc.GetAttackCount() + "\n(HighScore : " + PlayerPrefs.GetInt("HighScore") + ")\n\n[A key] 再挑戦\n[S key] タイトル画面へ\n[D key] ゲーム終了";
+        stateLabel.text =
+            "GAME SET！\n\n倒した数 : " + pc.GetAttackCount() + "\n進んだ距離 : " + runningDistance + "m\n(HighScore : " + PlayerPrefs.GetInt("HighScoreSHIMBO") + ")\n\n[A key] 再挑戦\n[S key] タイトル画面へ\n[D key] ゲーム終了";
 
     }
     

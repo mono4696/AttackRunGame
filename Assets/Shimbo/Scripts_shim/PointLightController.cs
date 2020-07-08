@@ -5,7 +5,6 @@ using UnityEngine;
 public class PointLightController : MonoBehaviour
 {
     public float maxIntensity;
-
     public float blinkSpeed;
 
     Light blinkLight;

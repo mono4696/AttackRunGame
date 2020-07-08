@@ -24,7 +24,7 @@ public class RightHand : MonoBehaviour
     { 
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("PUNCH");
+            //Debug.Log("PUNCH");
 
             count += 1;
             pc.SetAttackCount(count);

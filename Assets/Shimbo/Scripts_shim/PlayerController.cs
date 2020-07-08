@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Collider handCol;
 
     Vector3 move = Vector3.zero;
+
     public float gravity = 20f;
     public float speed;
     public float rotSpeed;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     const int defaultHP = 3;
     int hp = defaultHP;
-    int enemyCount;
+    int enemyCount;//Score
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (IsStan())
-        {
+        { 
             return;
         }
         else
@@ -126,11 +127,13 @@ public class PlayerController : MonoBehaviour
         voice.Play();
     }
 
+    //HP確認
     public int Hp()
     {
         return this.hp;
     }
 
+    //気絶(終了条件)判定
     public bool IsStan()
     {
         return hp <= 0;
@@ -153,13 +156,13 @@ public class PlayerController : MonoBehaviour
     {
         if (IsStan())
         {
-            Debug.Log("stan.move");
+            //Debug.Log("stan.move");
             animator.SetTrigger("stan");
             return;
         }
         else if(hit.gameObject.tag == "EnemyHand")
         {
-            Debug.Log("damage.move");
+            //Debug.Log("damage.move");
             animator.SetBool("damaged", true);
             this.hp--;
             transform.position = transform.position + -transform.forward * 3f;

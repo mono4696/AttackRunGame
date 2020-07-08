@@ -6,37 +6,28 @@ public class LinecastCamera : MonoBehaviour
 {
     Vector3 vec;
 
-    [SerializeField]
-    Transform LookAtTargetPos;
+    public Transform LookAtTargetPos;
 
-    [SerializeField]
-    float cameraMoveSpeed = 1f;
+    public float cameraMoveSpeed;
 
-    [SerializeField]
-    float cameraRotateSpeed = 90f;
-
-    [SerializeField]
-    Vector3 basePos = new Vector3(0f, 0f, 2f);//カメラのキャラクターからの相対値を指定
-
-    [SerializeField]
-    LayerMask objLayer;//障害物とするレイヤー
+    public LayerMask objLayer;//障害物のレイヤー
 
     // Start is called before the first frame update
     void Start()
     {
-        //通常のカメラ位置を計算
+        //カメラ位置
         vec = LookAtTargetPos.position - transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //カメラの位置をキャラクターの後ろ側に移動する(Vector3.Lerpを使って滑らかに移動させる)
+        //カメラの位置をキャラクターの後ろ側に移動する(滑らかに移動)
         transform.position = Vector3.Lerp(transform.position, LookAtTargetPos.position - vec, cameraMoveSpeed * Time.deltaTime);
 
         RaycastHit hit;
         //キャラクターとカメラの位置に障害物があったら障害物の位置にカメラを移動させる
-        if(Physics.Linecast(LookAtTargetPos.position,transform.position,out hit, objLayer))
+        if(Physics.Linecast(LookAtTargetPos.position, transform.position, out hit, objLayer))
         {
             //障害物の中身が見えないように一気に衝突ポイントに移動する
             transform.position = hit.point;
@@ -47,9 +38,10 @@ public class LinecastCamera : MonoBehaviour
 
         // カメラの回転ではQuaternion.Slerpを使って『現在の角度』から『カメラからキャラクターのカメラが見る位置の方向の角度』へと徐々に回転
         //　スピードを考慮しない場合はLookAtで出来る
-        //transform.LookAt(charaTra.position);
+        transform.LookAt(LookAtTargetPos.position);
+
         //　スピードを考慮する場合
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(LookAtTargetPos.position - transform.position), cameraRotateSpeed * Time.deltaTime);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(LookAtTargetPos.position - transform.position), cameraRotateSpeed * Time.deltaTime);
 
     }
 }
